@@ -1,9 +1,9 @@
 import axios from "axios"
 import { action_types } from "../constants/cartConstants"
 
+// const Url = 'http://localhost:5000'
+const url = "https://flipcart-mern-eo8h.onrender.com"
 export const addToCart = (id, quantity) => async (dispatch) => {
-    const Url = 'http://localhost:5000'
-    const url = "https://flipcart-mern-eo8h.onrender.com"
 
     try {
         // const res = await axios.get(`http://localhost:5000/product/${id}`)
@@ -19,8 +19,7 @@ export const addToCart = (id, quantity) => async (dispatch) => {
     }
 }
 export const getItemCart = (customer_id) => async (dispatch) => {
-    const Url = 'http://localhost:5000'
-    const url = "https://flipcart-mern-eo8h.onrender.com"
+    
 
     try {
         
@@ -36,12 +35,11 @@ export const getItemCart = (customer_id) => async (dispatch) => {
 }
 
 export const addItemToCart = (product) => async (dispatch) => {
-    const Url = 'http://localhost:5000'
-    const url = "https://flipcart-mern-eo8h.onrender.com"
+    
     // https://flipcart-mern-eo8h.onrender.com/
     try {
         console.log('addItemToCart 11');
-        const res = await axios.post(`${Url}/addtocart`, product)
+        const res = await axios.post(`${url}/addtocart`, product)
         console.log('addItemToCart2', res);
         return res
 
@@ -53,10 +51,9 @@ export const addItemToCart = (product) => async (dispatch) => {
 }
 // 64a7ab6f80fb18dc26342bb5
 export const removeFromCart = (id) => async (dispatch) => {
-    const Url = 'http://localhost:5000'
-    const url = "https://flipcart-mern-eo8h.onrender.com"
+    
     try {
-        const res = await axios.delete(`${Url}/deleteproduct/${id}`)
+        const res = await axios.delete(`${url}/deleteproduct/${id}`)
         console.log(' deleted res from removeFromCart----',res)
         dispatch({ type: action_types.REMOVE_FROM_CART, payload: id })
         return res
@@ -67,10 +64,9 @@ export const removeFromCart = (id) => async (dispatch) => {
 }
 
 export const increaseItemQuantity = (id) => async (dispatch) => {
-    const Url = 'http://localhost:5000'
-    const url = "https://flipcart-mern-eo8h.onrender.com"
+    
     try{
-        const res = await axios.put(`${Url}/increasequantity/${id}`)
+        const res = await axios.put(`${url}/increasequantity/${id}`)
         console.log(' increasequantity res from increaseItemQuantity----',res)
         dispatch({ type: action_types.INCREASE_ITEM_QUANTITY, payload: res })
         return res
@@ -80,10 +76,9 @@ export const increaseItemQuantity = (id) => async (dispatch) => {
     }
 }
 export const decreaseItemQuantity = (id) => async(dispatch) => {
-    const Url = 'http://localhost:5000'
-    const url = "https://flipcart-mern-eo8h.onrender.com"
+    
     try{
-        const res = await axios.put(`${Url}/decreasequantity/${id}`)
+        const res = await axios.put(`${url}/decreasequantity/${id}`)
         console.log(' decreasequantity res from decreaseItemQuantity----',res)
         dispatch({ type: action_types.DECREASE_ITEM_QUANTITY, payload: res })
         return res
