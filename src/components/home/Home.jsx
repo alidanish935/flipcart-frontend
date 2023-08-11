@@ -16,9 +16,9 @@ const Component = styled(Box)({
 
 
 const Home = () => {
-  const {products} = useSelector(state => state.products)
-  const products1 = useSelector(state => state.products)
-  console.log('products-------',products,'loading--',products1)
+  const {products,loading} = useSelector(state => state.products)
+  // const products1 = useSelector(state => state.products)
+  console.log('products-------',products,'loading--',loading)
   const dispatch = useDispatch();
   useEffect(()=>{
    dispatch(getProducts())
@@ -26,7 +26,12 @@ const Home = () => {
   
   return (
     <Box>
-        {/* <CircularIndeterminate /> */}
+      {
+        loading ?<>
+        Loading please wait.....
+        <CircularIndeterminate />
+        </>
+        :<>
         <Navbar/>
         <Component>
            <Banner/>
@@ -35,6 +40,8 @@ const Home = () => {
            <Slide data={products} title="Best Discounts for You" timer={false}  />
            <Slide data={products} title="Season's Top Pick" timer={false} autoPlay={false}/>
         </Component>
+        </>
+        }
     </Box>
   )
 }

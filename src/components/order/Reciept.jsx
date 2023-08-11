@@ -105,8 +105,9 @@ const Reciept = ({totalPrice, receiptDialog, setreceiptDialog, cartItems }) => {
                     }
 
                 </ImageContainer>
+                <Typography style={{fontSize:15,color:'green', marginLeft: 20 }} >( Order details successfully sent to your email) </Typography><br />
 
-                <Typography style={{ fontSize: 11, margin: 20 }} >Orders placed with '1 Day Delivery' option, will not have open-box delivery. 'Working condition' of the product will not be verified during delivery.</Typography>
+                <Typography style={{ fontSize: 11, marginLeft: 20 }} >Orders placed with '1 Day Delivery' option, will not have open-box delivery. 'Working condition' of the product will not be verified during delivery.</Typography>
                 {/* </Component> */}
                 {/* <StyledButton variant="contained"  onClick={}>Accept & Continue</StyledButton> */}
             </Dialog>

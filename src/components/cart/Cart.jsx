@@ -1,10 +1,10 @@
-import { useContext, useEffect, useState } from 'react';
+import {  useContext, useEffect } from 'react';
 
-import { Box, Typography, Button, Grid, styled, Alert } from '@mui/material';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Box, Typography, Button, Grid, styled } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { addToCart, getItemCart, removeFromCart } from '../redux/actions/cartActions';
+import {  getItemCart, removeFromCart } from '../redux/actions/cartActions';
 //import Shipping from '../Shipping.jsx/Shipping';
 
 import TotalView from './TotalView';
@@ -12,6 +12,8 @@ import EmptyCart from './EmptyCart';
 import CartItem from './CartItem';
 import { DataContext } from '../../DataApp'
 import { message } from 'antd';
+import CircularIndeterminate from '../../Spinner';
+
 
 
 
@@ -58,7 +60,8 @@ const Cart = () => {
 
   const customer_id = localStorage.getItem('customer_id')
   const navigate = useNavigate()
-  const localContext = useContext(DataContext)
+  // const localContext = useContext(DataContext)
+  // const { conloading,setconLoading } = localContext
   const cartItems = useSelector(state => state.cart.cartItems)
   console.log('product in cart--- ', cartItems)
    
@@ -83,13 +86,19 @@ const Cart = () => {
 
   }
   const buyNow = () => {
-    navigate('/shipping')
+        //  if(cartItems.length > 0){
+            
+           navigate('/shipping')
+    //  }
+    //  alert('Please add some item to cart')
   }
   useEffect(() => {
     dispatch(getItemCart(customer_id))
+
   }, [])
   return (
     <>
+    {/* {conloading&& <CircularIndeterminate/>} */}
       {cartItems.length ?
         <Component container>
           <LeftComponent item lg={9} md={9} sm={12} xs={12}>

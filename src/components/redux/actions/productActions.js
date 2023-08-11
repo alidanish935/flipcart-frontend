@@ -6,7 +6,7 @@ const Url = "http://localhost:5000"
 // https://flipcart-mern-eo8h.onrender.com
 export const getProducts = () => async (dispatch) => {
     try {
-        // dispatch({ type: ActionTypes.GET_PRODUCTS_REQUEST })
+        dispatch({ type: ActionTypes.GET_PRODUCTS_REQUEST })
         const res = await axios.get(`${url}/products`)
         dispatch({ type: ActionTypes.GET_PRODUCTS_SUCCESS, payload: res.data })
     } catch (error) {

@@ -6,6 +6,7 @@ const url = "https://flipcart-mern-eo8h.onrender.com"
 export const addToCart = (id, quantity) => async (dispatch) => {
 
     try {
+        // dispatch({type:action_types.ADD_TO_CART_REQUEST})
         // const res = await axios.get(`http://localhost:5000/product/${id}`)
         console.log('res in addtocart11111111')
         const res = await axios.get(`${url}/product/${id}`)

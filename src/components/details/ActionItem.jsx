@@ -36,7 +36,7 @@ const ActionItem = ({product}) => {
     const customer_id = localStorage.getItem('customer_id')
 
     // const localContext = useContext(DataContext)
-    // const {  } = localContext
+    // const { conloading, setconLoading } = localContext
     console.log('product in action item',product)
     const {id}= product
     const navigate = useNavigate()
@@ -53,15 +53,16 @@ const ActionItem = ({product}) => {
             //   dispatch(addToCart(id,quantity))
           
 
-               await dispatch(addItemToCart(newProduct))      
-           const res =  await dispatch(getItemCart(customer_id))      
-           console.log('dispatch(getItemCart(customer_id)) ---',res)
+            const response =  await dispatch(addItemToCart(newProduct))      
+           if(response.status === 200||response.status === 201){
+               message.success(`${newProduct.title.shortTitle} - Added Successfully to Cart`)
+               message.success(`${newProduct.title.shortTitle} - Added Successfully to Cart`)
+           }
+            const res =  await dispatch(getItemCart(customer_id))      
+           console.log('dispatch(getItemCart(customer_id)) ---',res,'dispatch(addItemToCart(newProduct)--',response)
 
-             message.success(`${newProduct.title.shortTitle} - Added Successfully to Cart`)
-             message.success(`${newProduct.title.shortTitle} - Added Successfully to Cart`)
     //    <Alert severity="success">successfully removed product - </Alert>
 
-           navigate('/cart')
           
 
         }else{
@@ -70,18 +71,25 @@ const ActionItem = ({product}) => {
         }
     }
    
-    const buyNow = async ()=>{
-    //     let res = await payUsingPaytm({amount:500,email:'alidanish935@gmail.com'})
-    //   //  console.log('buy now fn in actionItem', res)
-    //    let information = {
-    //     action: 'https://securegw-stage.paytm.in/order/process',
-    //     params:res
-    //    }
-    //   post(information)
-    navigate('/shipping')
+    const gotocart = async ()=>{
+    // //     let res = await payUsingPaytm({amount:500,email:'alidanish935@gmail.com'})
+    // //   //  console.log('buy now fn in actionItem', res)
+    // //    let information = {
+    // //     action: 'https://securegw-stage.paytm.in/order/process',
+    // //     params:res
+    // //    }
+    // //   post(information)
+    // const res =  await dispatch(getItemCart(customer_id))      
+    //     if(res.data.length > 0){
+            
+            navigate('/cart')
+        // }
+        // alert('Your cart is')
+
+    // navigate('/shipping')
     }
     useEffect(()=>{
-            
+      
         
     },[])
   return (
@@ -91,7 +99,7 @@ const ActionItem = ({product}) => {
             <Image src={product.detailUrl} alt='product' />
         </Box>
         <StyledButton onClick={addCartItem} variant='contained' style={{marginRight: 10, background: '#ff9f00'}}  > <Cart/>ADD TO CART</StyledButton>
-        <StyledButton onClick={()=>buyNow()} variant='contained' style={{background: '#fb641b'}} > <Flash/>BUY NOW</StyledButton>
+        <StyledButton onClick={()=>gotocart()} variant='contained' style={{background: '#fb641b'}} > <Flash/>GO TO CART</StyledButton>
     </LeftContainer>
   )
 }

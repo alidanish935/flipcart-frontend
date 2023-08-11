@@ -16,10 +16,24 @@ const Component = styled(Grid)(({ theme }) => ({
     display: 'flex',
     [theme.breakpoints.down('sm')]: {
         padding: '15px 0',
-        width:'90%',
-        margin:'auto'
+        width: '90%',
+        margin: 'auto'
     }
 }));
+const COD = styled(Box)(({theme})=>({
+    display: 'flex',
+    [theme.breakpoints.down('md')]:{
+        display:'block'
+    }
+}))
+const RandomNO = styled(Box)(({theme})=>({
+    display: 'flex', height: 53, border: '1px solid', width: '90%', justifyContent: 'center', alignItems: 'center', fontSize: 30, color: 'green',
+    fontWeight: 700, fontFamily: 'cursive',
+    width:100,
+    [theme.breakpoints.down('md')]:{
+        width:'100%',
+    }
+}))
 
 const LeftComponent = styled(Grid)(({ theme }) => ({
     // width:'70%',
@@ -102,15 +116,20 @@ const Payment = () => {
         })
         console.log('CartItem----', CartItem)
         setNewCartItem(CartItem)
+        message.success("✨Email Registered SuccessFully🎊 ")
+        message.success("✨Email Registered SuccessFully🎊 ")
     }
     const phonepeContinueFn = async (e) => {
         if (email) {
 
-            setreceiptDialog(true)
             const res = await sendOrderMail(newCartItem)
             console.log('phonepeContinueFn--', res)
             message.success("✨Congratulation!🎊, You Order ❤ has been Placed Successfully")
             message.success("✨Congratulation!🎊, You Order ❤ has been Placed Successfully")
+            setTimeout(()=>{
+                setreceiptDialog(true)
+
+            },2000)
             // alert("✨Congratulation!🎊, You Order ❤ has been Placed Successfully");
         } else {
             message.error('Email is required')
@@ -123,11 +142,14 @@ const Payment = () => {
 
             if (yrUpiId !== '') {
 
-                setreceiptDialog(true)
                 const res = await sendOrderMail(newCartItem)
                 console.log('yrUpiIdFn--', res)
                 message.success("✨Congratulation!🎊, You Order ❤ has been Placed Successfully")
                 message.success("✨Congratulation!🎊, You Order ❤ has been Placed Successfully")
+                setTimeout(()=>{
+                    setreceiptDialog(true)
+    
+                },2000)
             } else {
                 message.error('UPI ID is required')
                 message.error('UPI ID is required')
@@ -142,11 +164,14 @@ const Payment = () => {
         if (email) {
             if (paytmInput !== '') {
 
-                setreceiptDialog(true)
                 const res = await sendOrderMail(newCartItem)
                 console.log('paytnFn--', res)
                 message.success("✨Congratulation!🎊, You Order ❤ has been Placed Successfully")
                 message.success("✨Congratulation!🎊, You Order ❤ has been Placed Successfully")
+                setTimeout(()=>{
+                    setreceiptDialog(true)
+    
+                },2000)
             } else {
                 message.error('Paytm No is required')
                 message.error('Paytm No is required')
@@ -159,33 +184,41 @@ const Payment = () => {
         }
 
     }
-    const confirmFn = () => {
-        if(email){
-        console.log(typeof (charecter), 'charecter---', charecter)
-        console.log(typeof (charecterInput), 'charecterInput---', charecterInput)
-        if (charecter === parseInt(charecterInput)) {
-            setCharecterInput('')
-            // setCharecter('Matched')
-            setCheckIcn(true)
-            setreceiptDialog(true)
-            message.success("✨Matched Successfully🎊 ")
-            message.success("✨Matched Successfully🎊 ")
+    const confirmFn = async () => {
+        if (email) {
+            console.log(typeof (charecter), 'charecter---', charecter)
+            console.log(typeof (charecterInput), 'charecterInput---', charecterInput)
+            if (charecter === parseInt(charecterInput)) {
 
+                const res = await sendOrderMail(newCartItem)
+                message.success("✨Matched Successfully🎊 ")
+                message.success("✨Matched Successfully🎊 ")
+                setCharecterInput('')
+                // setCharecter('Matched')
+                
+                setCheckIcn(true)
+                message.success("✨Congratulation!🎊, You Order ❤ has been Placed Successfully")
+                message.success("✨Congratulation!🎊, You Order ❤ has been Placed Successfully")
+                setTimeout(()=>{
+                   setreceiptDialog(true)
+
+               },3000)
+
+            } else {
+                alert('Please enter the captha again------')
+                setCharecterInput('')
+                charectersFn()
+            }
         } else {
-            alert('Please enter the captha again------')
-            setCharecterInput('')
-            charectersFn()
+            message.error('Email is required')
+            message.error('Email is required')
         }
-    }else{
-        message.error('Email is required')
-        message.error('Email is required')
-    }
 
     }
 
     useEffect(() => {
-        console.log('newCartItem in useeffect', newCartItem,'email-',email)
-    }, [newCartItem,email])
+        console.log('newCartItem in useeffect', newCartItem, 'email-', email)
+    }, [newCartItem, email])
     useEffect(() => {
         charectersFn()
     }, [])
@@ -320,19 +353,19 @@ const Payment = () => {
 
                                 <InsideBox>
                                     <Typography style={{ fontSize: 11, color: '#3E001F', border: '1px solid', padding: 5, backgroundColor: '#FFE5AD' }} >Due to handling costs, a nominal fee of ₹10 will be charged for orders placed using this option. Avoid this fee by paying online now.</Typography>
-                                    <Box style={{ display: 'flex' }} >
+                                    <COD   >
                                         <Box style={{ display: 'flex' }} >
-                                            <Box style={{ display: 'flex', height: 53, border: '1px solid', width: 100, justifyContent: 'center', alignItems: 'center', fontSize: 30, color: 'green', fontWeight: 700, fontFamily: 'cursive' }} variant='outlined'>{checkIcn ? <CheckIcon /> : charecter}
-                                            </Box>
+                                            <RandomNO  variant='outlined'>{checkIcn ? <CheckIcon /> : charecter}
+                                            </RandomNO>
                                             <Button style={{ height: 54 }} variant='outlined' onClick={charectersFn}><RefreshIcon /> </Button>
 
                                         </Box>
+                                        <Box style={{ display: 'flex' }} >
                                         <TextField onChange={(e) => setCharecterInput(e.target.value)} label='Enter the charecters' value={charecterInput} />
-                                        <Box>
 
                                             <Button style={{ height: 54 }} variant='contained' onClick={confirmFn} >CONFIRM ORDER</Button>
                                         </Box>
-                                    </Box>
+                                    </COD>
                                 </InsideBox>
                             </>}
                         </PaymentOptions>
@@ -342,13 +375,14 @@ const Payment = () => {
                 <Grid item lg={3} md={3} sm={12} xs={12}>
                     <TotalView cartItems={cartItems} />
 
-                    <Box style={{marginLeft:20}}>
+                    <Box style={{ marginLeft: 20 }}>
                         <Typography>Please provide valid email </Typography><br />
-                        <Box style={{display:'flex'}}>
+                        <Box style={{ display: 'flex' }}>
 
-                        <TextField size='small' onChange={(e) => setEmail(e.target.value)} style={{ marginRight: 8 }} name='email' label='Enter Your Email' />
-                        <Button variant="contained" onClick={EmailFn} style={{ marginBottom: 8 }}>Save</Button>
+                            <TextField size='small' onChange={(e) => setEmail(e.target.value)} style={{ marginRight: 8 }} name='email' label='Enter Your Email' />
+                            <Button variant="contained" onClick={EmailFn} style={{ marginBottom: 8 }}>Save</Button>
                         </Box>
+                        <Typography style={{fontSize:12,color:'green'}} >( Check your email after successfull order) </Typography><br />
                     </Box>
                 </Grid>
                 <Reciept totalPrice={totalPrice} receiptDialog={receiptDialog} setreceiptDialog={setreceiptDialog} cartItems={cartItems} />
