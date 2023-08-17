@@ -3,7 +3,7 @@ import { ActionTypes } from "../constants/productConstants.js";
 export const productReducer= (state={products:[]},action)=>{
     switch(action.type){
         case ActionTypes.GET_PRODUCTS_REQUEST:
-            return {loading:true,products:[]}
+            return {loading:true}
         case ActionTypes.GET_PRODUCTS_SUCCESS:
             return {loading:false,products:action.payload}
 
@@ -14,6 +14,19 @@ export const productReducer= (state={products:[]},action)=>{
             return state;
     }
 
+}
+export const productClothReducer = (state={clothProduct:[]},action)=>{
+    console.log('productClothReducer-- ',action.payload)
+    switch(action.type){
+        case ActionTypes.GET_PRODUCTS_CLOTHS_REQUEST:
+            return {loading:true}
+        case ActionTypes.GET_PRODUCTS_CLOTHS_SUCCESS:
+            return {loading:false,clothProduct:action.payload}
+            case ActionTypes.GET_PRODUCTS_FAIL:
+                return {error:action.payload}
+        default:
+            return state;
+    }
 }
 
 export const getProductDetailsReducer =(state={product:{}},action)=>{
@@ -32,5 +45,19 @@ export const getProductDetailsReducer =(state={product:{}},action)=>{
 
         default:
             return state
+    }
+}
+export const getClothDetailsReducer =(state={cloth:{}},action)=>{
+    switch(action.type){
+        case ActionTypes.GET_PRODUCTS_CLOTHS_REQUEST:
+            return {loading:true}
+        case ActionTypes.GET_PRODUCTDETAILS_CLOTH_SUCCESS:
+            return {loading:false,cloth:action.payload}
+
+        case ActionTypes.GET_PRODUCTDETAILS_CLOTH_FAIL:
+            return {loading:false,error:action.payload}
+
+        default:
+            return state;
     }
 }

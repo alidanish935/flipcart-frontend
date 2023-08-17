@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom';
-import { getProductDetails } from '../redux/actions/productActions';
+import { getClothDetails, getProductDetails } from '../redux/actions/productActions';
 import { Box, Grid, Typography, styled } from '@mui/material';
 import ActionItem from './ActionItem';
 import ProductDetail from './ProductDetail';
@@ -34,40 +34,69 @@ const DetailView = () => {
 
     const { id } = useParams()
     const dispatch = useDispatch();
-    const {product,loading} = useSelector(state => state.productDetail)
-    console.log('data in detailview-----', product,'loading--',loading)
+    const { product, loading } = useSelector(state => state.productDetail)
+    const { cloth } = useSelector(state => state.clothDetail)
+    console.log('data in detailview-----', product, 'cloth--', cloth)
     useEffect(() => {
         dispatch(getProductDetails(id))
-    }, [dispatch,id])
+        dispatch(getClothDetails(id))
+    }, [dispatch, id])
 
-    
+
     return (
         <>
-        
-        {loading && <CircularIndeterminate/>}
-        <Component>
-        {  product && Object.keys(product).length &&
-            <Container container> 
-                <Grid item lg={4} md={4} sm={8} xs={12}>
-                    <ActionItem product={product} />
-                </Grid>
-                <RightContainer item lg={7} md={8} sm={8} xs={12}>
-                    <Typography>{product.title.longTitle}</Typography>
-                    <Typography style={{marginTop: 5, color: '#878787', fontSize: 14 }}>
-                        8 Ratings & 1 Reviews
-                        <span><img src={fassured} style={{width: 77, marginLeft: 20}} /></span>
-                    </Typography>
-                    <Typography>
-                        <span style={{ fontSize: 28 }}>₹{product.price.cost}</span>&nbsp;&nbsp;&nbsp; 
-                        <span style={{ color: '#878787' }}><strike>₹{product.price.mrp}</strike></span>&nbsp;&nbsp;&nbsp;
-                        <span style={{ color: '#388E3C' }}>{product.price.discount} off</span>
-                    </Typography>
-                    <ProductDetail product={product} />
-                </RightContainer>
-            </Container>
-        }   
-    </Component>
-    </>
+            {loading && <CircularIndeterminate />}
+        {
+            product ?   <>
+
+            <Component>
+                {product && Object.keys(product).length &&
+                    <Container container>
+                        <Grid item lg={4} md={4} sm={8} xs={12}>
+                            <ActionItem product={product} cloth={cloth} />
+                        </Grid>
+                        <RightContainer item lg={7} md={8} sm={8} xs={12}>
+                            <Typography>{product.title.longTitle}</Typography>
+                            <Typography style={{ marginTop: 5, color: '#878787', fontSize: 14 }}>
+                                8 Ratings & 1 Reviews
+                                <span><img src={fassured} style={{ width: 77, marginLeft: 20 }} /></span>
+                            </Typography>
+                            <Typography>
+                                <span style={{ fontSize: 28 }}>₹{product.price.cost}</span>&nbsp;&nbsp;&nbsp;
+                                <span style={{ color: '#878787' }}><strike>₹{product.price.mrp}</strike></span>&nbsp;&nbsp;&nbsp;
+                                <span style={{ color: '#388E3C' }}>{product.price.discount} off</span>
+                            </Typography>
+                            <ProductDetail product={product} cloth={cloth}  />
+                        </RightContainer>
+                    </Container>
+                }
+            </Component>
+        </>
+             :<Component>
+             {cloth && Object.keys(cloth).length &&
+                 <Container container>
+                     <Grid item lg={4} md={4} sm={8} xs={12}>
+                     <ActionItem product={product} cloth={cloth} />
+                     </Grid>
+                     <RightContainer item lg={7} md={8} sm={8} xs={12}>
+                         <Typography>{cloth.title.longTitle}</Typography>
+                         <Typography style={{ marginTop: 5, color: '#878787', fontSize: 14 }}>
+                             8 Ratings & 1 Reviews
+                             <span><img src={fassured} style={{ width: 77, marginLeft: 20 }} /></span>
+                         </Typography>
+                         <Typography>
+                             <span style={{ fontSize: 28 }}>₹{cloth.price.cost}</span>&nbsp;&nbsp;&nbsp;
+                             <span style={{ color: '#878787' }}><strike>₹{cloth.price.mrp}</strike></span>&nbsp;&nbsp;&nbsp;
+                             <span style={{ color: '#388E3C' }}>{cloth.price.discount} off</span>
+                         </Typography>
+                         <ProductDetail product={product} cloth={cloth}  />
+                     </RightContainer>
+                 </Container>
+             }
+         </Component>
+        }
+          
+        </>
     )
 }
 

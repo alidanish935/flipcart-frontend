@@ -4,7 +4,7 @@ import Navbar from './Navbar'
 import Banner from './Banner'
 import MidSlide from './MidSlide'
 import {useDispatch,useSelector} from 'react-redux'
-import {getProducts} from '../redux/actions/productActions.js'
+import {getProducts, getProductsCloth} from '../redux/actions/productActions.js'
 import MidSection from './MidSection'
 import Slide from './Slide.jsx'
 import CircularIndeterminate from '../../Spinner'
@@ -17,11 +17,13 @@ const Component = styled(Box)({
 
 const Home = () => {
   const {products,loading} = useSelector(state => state.products)
+  const {clothProduct} = useSelector(state => state.clothProduct)
   // const products1 = useSelector(state => state.products)
-  console.log('products-------',products,'loading--',loading)
+  console.log('products-------',products,'loading--',clothProduct)
   const dispatch = useDispatch();
   useEffect(()=>{
    dispatch(getProducts())
+   dispatch(getProductsCloth())
   },[dispatch])
   
   return (
@@ -37,7 +39,7 @@ const Home = () => {
            <Banner/>
            <MidSlide products={products}   title='Discounts for You' timer={false}   />
            <MidSection />
-           <Slide data={products} title="Best Discounts for You" timer={false}  />
+           <Slide data={clothProduct} title="Best Discounts for You" timer={false}  />
            <Slide data={products} title="Season's Top Pick" timer={false} autoPlay={false}/>
         </Component>
         </>
@@ -45,5 +47,6 @@ const Home = () => {
     </Box>
   )
 }
+
 
 export default Home

@@ -15,17 +15,7 @@ export const authenticateSignup = async (user) => {
 
     }
 }
-// export const getItemCart = async() =>{
-    
-//     try{
-//         const res1 = await axios.get(`${ Url}/getcartItem`)
-//         console.log('res in addtocart res1',res1)
 
-//     }catch(error){
-//         console.log('Error while calling cart API');
-
-//     }
-// }
 
 export const authenticateLogin = async(user)=>{
     try{

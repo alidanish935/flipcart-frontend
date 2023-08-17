@@ -8,9 +8,6 @@ import { action_types } from "../constants/cartConstants"
 export const addToCart=(state= {cartItems:[]},action)=>{
     console.log('from cart reducer-------------')
     switch(action.type){
-
-        // case action_types.ADD_TO_CART_REQUEST :
-        //     return {loading:true,cartItems:[]}
         case action_types.ADD_TO_CART :
             const item = action.payload;
             console.log('item----',item)

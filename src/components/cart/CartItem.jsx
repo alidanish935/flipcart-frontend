@@ -45,13 +45,13 @@ const CartItem = ({ item, removeItemFromCart }) => {
     return (
     <Component>
         <LeftComponent>
-                <img src={item.url} alt='cartimage' style={{ height: 110, width: 110 }} />
+                <img src={item.url} style={{ height: 110, width: 110 }} />
                 <GroupButton item={item} />
             </LeftComponent>
             <Box style={{ margin: 20 }}>
             <Typography>{addEllipsis(item.title.longTitle)}</Typography>
             <SmallText>Seller:RetailNet
-                    <span><img src={fassured} alt='cartimage' style={{ width: 50, marginLeft: 10 }} /></span>
+                    <span><img src={fassured} style={{ width: 50, marginLeft: 10 }} /></span>
                 </SmallText>
                 <Typography style={{margin: '20px 0'}}>
                     <Cost component="span">₹{item.price.cost}</Cost>&nbsp;&nbsp;&nbsp;
