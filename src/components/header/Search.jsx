@@ -2,7 +2,7 @@ import {useSelector,useDispatch} from 'react-redux'
 import { Box, InputBase, List, ListItem, styled } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search';
 import React, { useEffect, useState } from 'react'
-import { getProducts } from '../redux/actions/productActions';
+import { getProducts, getProductsCloth } from '../redux/actions/productActions';
 import { Link } from 'react-router-dom';
 
 const SearchContainer = styled(Box)`
@@ -33,7 +33,10 @@ const ListWrapper = styled(List)`
 const Search = () => {
   const dispatch = useDispatch()
   const {products} = useSelector(state=>state.products)
-  console.log('search product-------',products)
+  const { clothProduct } = useSelector(state => state.clothProduct)
+  const combineProduct =products && [ ...products,...clothProduct]
+  console.log('search product-------',combineProduct)
+
   const [text , setText]=useState('')
   const [open ,setOpen]=useState(true)
 
@@ -47,6 +50,7 @@ const Search = () => {
   }
   useEffect(()=>{
     dispatch(getProducts())
+    dispatch(getProductsCloth())
   },[dispatch])
   return (
     <SearchContainer>
@@ -60,7 +64,7 @@ const Search = () => {
           text && 
               <ListWrapper hidden={open} >
                   {
-                    products.filter((product)=>(
+                    combineProduct.filter((product)=>(
                       product.title.longTitle.toLowerCase().includes(text.toLocaleLowerCase())
                     )).map((product)=>(
                       <ListItem>

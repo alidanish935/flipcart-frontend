@@ -24,12 +24,12 @@ const RightComponent = styled(Box)(({ theme}) => ({
         display: 'none'
     }
 }));
-const MidSlide = ({products,title,timer}) => {
+const MidSlide = ({generalData,title,timer}) => {
     const adURL = 'https://rukminim1.flixcart.com/flap/464/708/image/633789f7def60050.jpg?q=70';
   return (
     <Component>
         <LeftComponent>
-            <Slide data={products} title={title} timer={true}/>
+            <Slide data={generalData} title={title} timer={true}/>
         </LeftComponent>
         <RightComponent>
                 <img src={adURL} style={{width: 217}}/>

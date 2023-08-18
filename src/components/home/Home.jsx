@@ -1,5 +1,5 @@
 import { Box, styled } from '@mui/material'
-import React,{useEffect} from 'react'
+import React,{useEffect, useState} from 'react'
 import Navbar from './Navbar'
 import Banner from './Banner'
 import MidSlide from './MidSlide'
@@ -20,6 +20,11 @@ const Home = () => {
   const {clothProduct} = useSelector(state => state.clothProduct)
   // const products1 = useSelector(state => state.products)
   console.log('products-------',products,'loading--',clothProduct)
+  const generalData = products && products.filter((item)=>item.filter ==='general' )
+  const seasonData = products && products.filter((item)=>{
+    return item.filter ==='phone'||item.filter ==='laptop'||item.filter==='watch'
+  } )
+  console.log('session data - ',seasonData)
   const dispatch = useDispatch();
   useEffect(()=>{
    dispatch(getProducts())
@@ -34,13 +39,13 @@ const Home = () => {
         <CircularIndeterminate />
         </>
         :<>
-        <Navbar/>
+        <Navbar />
         <Component>
            <Banner/>
-           <MidSlide products={products}   title='Discounts for You' timer={false}   />
+           <MidSlide generalData={generalData}   title='Discounts for You' timer={false}   />
            <MidSection />
-           <Slide data={clothProduct} title="Best Discounts for You" timer={false}  />
-           <Slide data={products} title="Season's Top Pick" timer={false} autoPlay={false}/>
+           <Slide data={clothProduct} title="Season's Top Pick" timer={false}  />
+           <Slide data={seasonData} title="Best Discounts for You " timer={false} autoPlay={false}/>
         </Component>
         </>
         }

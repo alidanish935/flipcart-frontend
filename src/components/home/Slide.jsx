@@ -53,7 +53,7 @@ const ViewAllButton = styled(Button)`
 `;
 
 const Image = styled('img')({
-    width: 'auto',
+    width: 150,
     height: 150
 })
 

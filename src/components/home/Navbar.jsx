@@ -1,6 +1,7 @@
 import React from 'react'
 import {navData} from '../constants/data'
 import { Box, Typography, styled } from '@mui/material'
+import { Link } from 'react-router-dom'
 
 const Component = styled(Box)(({theme})=>({
     display:'flex',
@@ -14,9 +15,11 @@ const Component = styled(Box)(({theme})=>({
 }))
     
 
-const Container=styled(Box)`
+const Container=styled(Link)`
     padding: 12px 8px;
-    text-align:center
+    text-align:center;
+    text-decoration: none;
+
 `
 const Text = styled(Typography)`
     font-size: 14px;
@@ -25,12 +28,12 @@ const Text = styled(Typography)`
 `
 const Navbar = () => {
     return (
-        <Component>
+        <Component >
             {
                 navData.map((item) => (
-                    <Container>
-                        <img src={item.url} alt='nav' style={{width:64}} />
-                        <Text>{item.text} </Text>
+                    <Container to={`navdetail/${item.text}`}>
+                        <img src={item.url} alt='nav' style={{width:64,height:80}}  />
+                        <Text>{item.filter} </Text>
                     </Container>
                 ))
             }

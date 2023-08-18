@@ -9,6 +9,7 @@ import Cart from './components/cart/Cart'
 import Shipping from './components/Shipping.jsx/Shipping';
 import Summery from './components/order/Summery';
 import Payment from './components/order/Payment';
+import NavDetail from './components/details/NavDetail';
 // import Reciept from './components/order/Reciept';
 
 function App() {
@@ -21,10 +22,12 @@ function App() {
         <Routes>
           <Route path='/' element={<Home/>} />
           <Route path='/product/:id' element={<DetailView/>} />
+          <Route path='navdetail/:id/product/:id' element={<DetailView/>} />
           <Route path='/cart' element={<Cart />} />
           <Route path='/shipping' element={<Shipping/>}/>
           <Route path='/summery' element={<Summery/>}/>
           <Route path='/payment' element={<Payment/>}/>
+          <Route path='/navdetail/:id' element={<NavDetail/>}/>
           {/* <Route path='/receipt' element={<Reciept/>}/> */}
         </Routes>
        </Box>  

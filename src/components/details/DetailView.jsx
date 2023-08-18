@@ -33,6 +33,7 @@ const DetailView = () => {
     const fassured = 'https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/fa_62673a.png'
 
     const { id } = useParams()
+    console.log('id in detail view --',id)
     const dispatch = useDispatch();
     const { product, loading } = useSelector(state => state.productDetail)
     const { cloth } = useSelector(state => state.clothDetail)

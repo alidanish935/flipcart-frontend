@@ -135,10 +135,10 @@ const Payment = () => {
             console.log('phonepeContinueFn--', res)
             message.success("✨Congratulation!🎊, You Order ❤ has been Placed Successfully")
             message.success("✨Congratulation!🎊, You Order ❤ has been Placed Successfully")
-            setTimeout(() => {
+            
                 setreceiptDialog(true)
 
-            }, 1000)
+           
             // alert("✨Congratulation!🎊, You Order ❤ has been Placed Successfully");
         } else {
             message.error('Email is required')
@@ -155,10 +155,10 @@ const Payment = () => {
                 console.log('yrUpiIdFn--', res)
                 message.success("✨Congratulation!🎊, You Order ❤ has been Placed Successfully")
                 message.success("✨Congratulation!🎊, You Order ❤ has been Placed Successfully")
-                setTimeout(() => {
+               
                     setreceiptDialog(true)
 
-                }, 1000)
+              
             } else {
                 message.error('UPI ID is required')
                 message.error('UPI ID is required')
@@ -177,10 +177,10 @@ const Payment = () => {
                 console.log('paytnFn--', res)
                 message.success("✨Congratulation!🎊, You Order ❤ has been Placed Successfully")
                 message.success("✨Congratulation!🎊, You Order ❤ has been Placed Successfully")
-                setTimeout(() => {
+                
                     setreceiptDialog(true)
 
-                }, 1000)
+               
             } else {
                 message.error('Paytm No is required')
                 message.error('Paytm No is required')
@@ -216,10 +216,10 @@ const Payment = () => {
                 console.log('atnfn--', res)
                 message.success("✨Congratulation!🎊, You Order ❤ has been Placed Successfully")
                 message.success("✨Congratulation!🎊, You Order ❤ has been Placed Successfully")
-                setTimeout(() => {
+                
                     setreceiptDialog(true)
 
-                }, 1000)
+              
             }
         } else {
             message.error('Email is required')
@@ -246,7 +246,7 @@ const Payment = () => {
                 setTimeout(() => {
                     setreceiptDialog(true)
 
-                }, 3000)
+                }, 1000)
 
             } else {
                 alert('Please enter the captha again------')

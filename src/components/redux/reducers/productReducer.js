@@ -3,7 +3,7 @@ import { ActionTypes } from "../constants/productConstants.js";
 export const productReducer= (state={products:[]},action)=>{
     switch(action.type){
         case ActionTypes.GET_PRODUCTS_REQUEST:
-            return {loading:true}
+            return {loading:true,products:[]}
         case ActionTypes.GET_PRODUCTS_SUCCESS:
             return {loading:false,products:action.payload}
 

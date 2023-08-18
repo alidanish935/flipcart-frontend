@@ -3,6 +3,7 @@ import Carousel from 'react-multi-carousel'
 import { bannerData } from '../constants/data';
 import 'react-multi-carousel/lib/styles.css';
 import { styled } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 const responsive = {
 
@@ -57,9 +58,11 @@ const Banner = () => {
     >
       {
         bannerData.map((item) => (
+          <Link to={`/product/${item.id}`}>
           <Image src={item.url} alt='banner' />
-        ))
-      }
+        </Link>
+          ))
+        }
     </Carousel>
   )
 }
