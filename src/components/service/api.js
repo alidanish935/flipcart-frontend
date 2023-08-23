@@ -7,7 +7,7 @@ const url = "https://flipcart-mern-eo8h.onrender.com"
 
 export const authenticateSignup = async (user) => {
     try {
-        return await axios.post(`${Url}/signup`, user)
+        return await axios.post(`${url}/signup`, user)
     } catch (error) {
         console.log('Error while calling Signup API: ', error);
         return error

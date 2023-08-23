@@ -6,6 +6,8 @@ import { Box, Grid, Typography, styled } from '@mui/material';
 import ActionItem from './ActionItem';
 import ProductDetail from './ProductDetail';
 import CircularIndeterminate from '../../Spinner';
+import { Bars } from 'react-loader-spinner';
+import { FormatPrice } from '../../utils/priceFormat';
 
 
 const Component = styled(Box)`
@@ -46,7 +48,19 @@ const DetailView = () => {
 
     return (
         <>
-            {loading && <CircularIndeterminate />}
+            {loading &&
+               <div style={{ display: 'flex', justifyContent: "center", alignItems: 'center', height: '100vh' }}>
+               <Bars
+                 height="80"
+                 width="80"
+                 color="#4fa94d"
+                 ariaLabel="bars-loading"
+                 wrapperStyle={{}}
+                 wrapperClass=""
+                 visible={true}
+               />
+             </div>
+            }
         {
             product ?   <>
 
@@ -63,7 +77,7 @@ const DetailView = () => {
                                 <span><img src={fassured} style={{ width: 77, marginLeft: 20 }} /></span>
                             </Typography>
                             <Typography>
-                                <span style={{ fontSize: 28 }}>₹{product.price.cost}</span>&nbsp;&nbsp;&nbsp;
+                                <span style={{ fontSize: 28 }}><FormatPrice price= {product.price.cost}/></span>&nbsp;&nbsp;&nbsp;
                                 <span style={{ color: '#878787' }}><strike>₹{product.price.mrp}</strike></span>&nbsp;&nbsp;&nbsp;
                                 <span style={{ color: '#388E3C' }}>{product.price.discount} off</span>
                             </Typography>

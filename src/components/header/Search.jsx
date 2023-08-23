@@ -58,7 +58,7 @@ const Search = () => {
          placeholder='  Search for products, brands and more '
          onChange={(e)=>getText(e.target.value)} value={text} />
         <SearchIconWrapper>
-            <SearchIcon />
+            {/* <SearchIcon /> */}
         </SearchIconWrapper>
         {
           text && 

@@ -66,10 +66,9 @@ const ActionItem = ({product,cloth}) => {
     //    <Alert severity="success">successfully removed product - </Alert>
 
           
-
         }else{
             <Alert severity="error">This is an error alert — check it out!</Alert>
-            message.error('please login------')
+            alert('please login------')
         }
     }
    

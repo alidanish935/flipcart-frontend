@@ -3,6 +3,7 @@ import React from 'react'
 import { Card, Box, Typography, Button, styled } from '@mui/material';
 // import GroupButton from './GroupButton'
 import { addEllipsis } from '../../utils/util';
+import { FormatPrice } from '../../utils/priceFormat';
 
 
 const Component = styled(Card)`
@@ -59,7 +60,7 @@ const SummeryItem = ({ item, removeItemFromCart }) => {
                     <span><img src={fassured} style={{ width: 50, marginLeft: 10 }} /></span>
                 </SmallText>
                 <Typography style={{ margin: '20px 0' }}>
-                    <Cost component="span">₹{item.price.cost}</Cost>&nbsp;&nbsp;&nbsp;
+                    <Cost component="span"><FormatPrice price={item.price.cost}/></Cost>&nbsp;&nbsp;&nbsp;
                     <MRP component="span"><strike>₹{item.price.mrp}</strike></MRP>&nbsp;&nbsp;&nbsp;
                     <Discount component="span">{item.price.discount} off</Discount>
                 </Typography>

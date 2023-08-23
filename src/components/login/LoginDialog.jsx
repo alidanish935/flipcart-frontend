@@ -98,7 +98,6 @@ const signupInitialValues = {
 const LoginDialog = ({ open, setOpen }) => {
     const dispatch = useDispatch()
     const location = useLocation()
-    const navigate = useNavigate()
     const localContext = useContext(DataContext)
     const { setAccount } = localContext
 

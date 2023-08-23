@@ -1,9 +1,9 @@
 import React from 'react'
 
 import { useSelector } from 'react-redux'
-import { Box, Button, Card, Dialog, Grid, Typography, styled } from '@mui/material'
+import { Box, Button, Card, Dialog, Typography, styled } from '@mui/material'
+import { FormatPrice } from '../../utils/priceFormat'
 
-import { useNavigate } from 'react-router-dom';
 
 const ImageContainer = styled(Card)`
 margin: auto;
@@ -11,19 +11,7 @@ width: 80%;
 padding: 20px;
 
 `
-const Instruction = styled(Box)`
-    margin:2px 15px 25px 15px;
-`
-const StyledButton = styled(Button)`
-  display: flex;
-  text-transform:none;
-  margin: auto;
-  margin-bottom:20px;
-  color: #fff;
-  border-radius: 5px;
-  width: 330px;
-  height: 41px;
-`;
+
 const Header = styled(Card)`
     display:flex;
     margin: auto;
@@ -37,7 +25,12 @@ const Address = styled(Card)`
     padding: 20px;
     margin-bottom:20px;
 `
-
+const Image = styled('img')(({ theme })=>({
+    display:'none',
+    [theme.breakpoints.down('md')]: {
+      display:'block'
+    }
+  }))
 const Reciept = ({totalPrice, receiptDialog, setreceiptDialog, cartItems }) => {
 
 
@@ -71,7 +64,7 @@ const Reciept = ({totalPrice, receiptDialog, setreceiptDialog, cartItems }) => {
                         <Box  >
                             <Typography style={{ fontSize: 30,fontWeight:600 ,color: '#2874f0' }}>
 
-                            Order placed for ₹{totalPrice}!
+                            Order placed for <FormatPrice price={totalPrice}/>!
                             </Typography>
                             <Typography>Your {totalCartItem} item will be delivered by {date.toDateString()}</Typography>
                         </Box>

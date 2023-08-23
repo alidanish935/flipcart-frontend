@@ -58,7 +58,7 @@ const ConditionDialog = ({ condDialog, setCondDialog, cartItems }) => {
                             cartItems && cartItems.map((item) => (
 
 
-                                <img src={item.url} style={{ height:cartItems.length >4?60: 90, width:cartItems.length >3?60: 90, margin: 18 }} />
+                                <img src={item.url} style={{ height:cartItems.length >4?60: 90, width:cartItems.length >3?60: 90, margin: cartItems.length >4?9:18 }} />
                             ))
                         }
 

@@ -4,7 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import { Box, Card, Grid, Typography, styled } from '@mui/material';
 
 import CircularIndeterminate from '../../Spinner';
-import { getProductsCloth } from '../redux/actions/productActions';
+import { getProducts, getProductsCloth } from '../redux/actions/productActions';
 
 
 const Component = styled(Box)`
@@ -44,7 +44,7 @@ padding: 20px;
 `
 const Image = styled('img')({
  
-  width: 150,
+  width: '18vh',
   height: 150,
   
 })
@@ -55,7 +55,6 @@ const Text = styled(Typography)`
 `
 
 const NavDetail = () => {
-  const {clothProduct} = useSelector(state => state.clothProduct)
   const fassured = 'https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/fa_62673a.png'
 
   const [data, setData] = useState()
@@ -63,7 +62,7 @@ const NavDetail = () => {
   const { id } = useParams()
   console.log('id in navdetails - ', id, typeof (id))
   const { products } = useSelector(state => state.products)
-  // const { clothProduct } = useSelector(state => state.clothProduct)
+  const { clothProduct } = useSelector(state => state.clothProduct)
 
   console.log('products in NavDetail-------',products,'clothProduct--in NavDetail',clothProduct)
   const combineProduct = [...products,...clothProduct]
@@ -88,6 +87,7 @@ const NavDetail = () => {
   const dispatch = useDispatch();
   useEffect(()=>{
    dispatch(getProductsCloth())
+  //  dispatch(getProducts())
   },[dispatch,id,products])
   
 

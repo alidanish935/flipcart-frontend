@@ -40,9 +40,9 @@ const GroupedButton = ({ item, counter}) => {
 
     return (
         <Component>
-            <StyledButton onClick={() => handleDecrement()} disabled={item.quantity === 1}>-</StyledButton>
+            <StyledButton title='remove' onClick={() => handleDecrement()} disabled={item.quantity === 1}>-</StyledButton>
             <Button disabled>{item.quantity}</Button>
-            <StyledButton onClick={() => handleIncrement()} >+</StyledButton>
+            <StyledButton title='add' onClick={() => handleIncrement()} >+</StyledButton>
         </Component>
     );
 }

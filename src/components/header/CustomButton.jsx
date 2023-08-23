@@ -80,10 +80,10 @@ const CustomButton = () => {
          <Typography style={{marginTop: 3,width: 135}} >Become a Seller</Typography>
         <Typography style={{marginTop: 3}} >More</Typography>
         <Container onClick={cartFn} >
-          <Badge  badgeContent={cartItems?.length} > 
+          <Badge title='Cart' style={{cursor:'pointer'}} color="secondary" badgeContent={cartItems?.length} > 
             <ShoppingCartIcon/>
-            </Badge>
-            <CartButton className={cartbtn} >Cart</CartButton>
+            </Badge >
+            <CartButton title='Cart' className={cartbtn} ></CartButton>
         </Container>
         <LoginDialog open={open} setOpen={setOpen} />
     </Wrapper>

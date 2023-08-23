@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 
 import { Box, Typography, styled } from '@mui/material';
 import { DataContext } from '../../DataApp';
+import { FormatPrice } from '../../utils/priceFormat';
 
 
 const Header = styled(Box)`
@@ -70,18 +71,18 @@ const TotalView = ({ cartItems }) => {
             </Header>
             <Container>
                 <Typography>Price ({cartItems && totalCartItem} item)
-                    <Price component="span">₹{price}</Price>
+                    <Price component="span"> <FormatPrice price={price}/></Price>
                 </Typography>
                 <Typography>Discount
-                    <Price component="span">-₹{discount}</Price>
+                    <Price component="span">-<FormatPrice price={discount} /></Price>
                 </Typography>
                 <Typography>Delivery Charges
                     <Price component="span">₹40</Price>
                 </Typography>
                 <TotalAmount>Total Amount
-                    <Price>₹{price - discount + 40}</Price>
+                    <Price><FormatPrice price={price - discount + 40} /></Price>
                 </TotalAmount>
-                <Discount>You will save ₹{discount - 40} on this order</Discount>
+                <Discount>You will save <FormatPrice price={discount - 40}/> on this order</Discount>
             </Container>
         </Box>
   )
