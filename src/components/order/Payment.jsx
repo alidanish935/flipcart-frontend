@@ -81,7 +81,8 @@ const Payment = () => {
     const [newCartItem, setNewCartItem] = useState([])
     const [cardNo, setCardNo] = useState('')
     const [cvv, setCvv] = useState('')
-    const [date, setDate] = useState('')
+    const [expiryDate, setExpiryDate] = useState('');
+
    
     const [email, setEmail] = useState('')
 
@@ -195,14 +196,14 @@ const Payment = () => {
     }
     const ATMfn =  async() => {
         if (email) {
-            if (cardNo === '' || cvv === '' || date === '') {
+            if (cardNo === '' || cvv === '' || expiryDate === '') {
                 message.error('All fields are required')
                 message.error('All fields are required')
                 // setUserName('');
                 // localStorage.removeItem("shoppingCart");
                 // window.location.reload();
             }
-            else if (cardNo.length !== 16) {
+            else if (cardNo.length !== 19) {
                 message.error('')
                 message.error('Please Use Valid card No')
 
@@ -218,16 +219,40 @@ const Payment = () => {
                 message.success("✨Congratulation!🎊, You Order ❤ has been Placed Successfully")
                 
                     setreceiptDialog(true)
-
-              
             }
         } else {
             message.error('Email is required')
             message.error('Email is required')
         }
     }
-
-
+    const handleCardNumberChange = (event) => {
+        let input = event.target.value.replace(/\D/g, ''); // Remove all non-digit characters
+    
+        let formattedCardNumber = input
+            .slice(0, 4)
+            .concat(" ", input.slice(4, 8))
+            .concat(" ", input.slice(8, 12))
+            .concat(" ", input.slice(12, 16))
+            .trim();
+    
+            setCardNo(formattedCardNumber);
+    };
+    const handleExpiryDateChange = (event) => {
+        let input = event.target.value.replace(/\D/g, ''); // Remove all non-digit characters
+    
+        let formattedExpiryDate;
+        if (input.length <= 2) {
+            // If the input is empty or has one or two digits, keep it as it is
+            formattedExpiryDate = input;
+        } else {
+            // Otherwise, format the input as "MM/YY"
+            formattedExpiryDate = input
+                .slice(0, 2)
+                .concat("/", input.slice(2, 4))
+                .trim();
+        }    
+        setExpiryDate(formattedExpiryDate);
+    };
     const confirmFn = async () => {
         if (email) {
             console.log(typeof (charecter), 'charecter---', charecter)
@@ -360,21 +385,16 @@ const Payment = () => {
                             </Button>
                             {paymentMode === 'ATM' && <>
                                 <Box>
-                                    <TextField onChange={(e) => setCardNo(e.target.value)} style={{ marginTop: 8, width: 250, marginLeft: 39 }} name='cardno' label='Enter Card Number' />
+                                    <TextField  maxLength="19" value={cardNo}  onChange={handleCardNumberChange} style={{ marginTop: 8, width: 250, marginLeft: 39 }} name='cardno' label='Enter Card Number' />
                                 </Box>
                                 <Box>
-                                    <TextField style={{ marginTop: 8, marginLeft: 39 }} type='date' name='exp' label='' onChange={(e) => setDate(e.target.value)} />
-                                    {/* <input
-                                        type="tel"
-                                        name="expiry"
-                                        className="form-control"
-                                        placeholder="Valid Thru"
-                                        pattern="\d\d/\d\d"
-                                        required
-                                    // onChange={onInputUpdate}
-                                    // onFocus={onInputFocus}
-                                    /> */}
-                                    <TextField style={{ marginTop: 8, width: 90 }} name='cvv' onChange={(e) => setCvv(e.target.value)} label='CVV' />
+                                <TextField style={{ marginTop: 8, marginLeft: 39,width:180 }} type='tel' name='exp' label='Valid Thru (MM/YY)' onChange={handleExpiryDateChange} maxLength="5" value={expiryDate} />
+
+                                    {/* <TextField style={{ marginTop: 8, marginLeft: 39 }} type='tel' name='exp' maxLength="19" value={cardNo}  onChange={handleCardNumberChange} /> */}
+                                   
+                    
+                                      {/* <input type='tel' maxLength="3" />   */}
+                                    <input maxLength="3" style={{ marginTop: 8, width: 60,height:50 }} type="tel"  name='cvv' onChange={(e) => setCvv(e.target.value)} placeholder='CVV'  value={cvv} />
                                 </Box>
                                 <StyledButton variant="contained" style={{ marginTop: 8, marginLeft: 39, marginBottom: 8 }} onClick={ATMfn} >PAY ₹{totalPrice}</StyledButton>
                             </>

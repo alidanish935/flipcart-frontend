@@ -38,7 +38,8 @@ const Home = () => {
     <Box>
       {
         loading ? <>
-          <div style={{ display: 'flex', justifyContent: "center", alignItems: 'center', height: '100vh' }}>
+            <div style={{ display: 'flex', justifyContent: "center",paddingTop:'50px' }}>Loading please wait.....</div>
+          <div style={{ display: 'flex', justifyContent: "center", alignItems: 'center', height: '80vh' }}>
             <Bars
               height="80"
               width="80"

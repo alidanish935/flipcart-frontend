@@ -4,7 +4,7 @@ export const navData = [
     { url: 'https://rukminim1.flixcart.com/flap/128/128/image/22fddf3c7da4c4f4.png?q=100', text: 'phone',filter:"Mobile",id:3 },
     { url: 'https://www.transparentpng.com/thumb/boy/gHPe8t-inspire-childrens-services.png', text: 'kids',filter:"Kids" ,id:4},
     { url: 'https://rukminim1.flixcart.com/flap/128/128/image/69c6589653afdb9a.png?q=100', text: 'general',filter:"Electronics",id:5 },
-    { url: 'https://www.pngplay.com/wp-content/uploads/6/Computer-Accessories-Transparent-Images.png', text: 'Accessories',filter:"Accessories",id:6 },
+    { url: 'https://img.freepik.com/free-photo/workplace-business-modern-male-accessories-laptop-white_155003-1722.jpg', text: 'Accessories',filter:"Accessories",id:6 },
     { url: 'https://www.pngfind.com/pngs/m/9-99467_apple-watch-png-mobile-watch-apple-price-transparent.png',filter:"Watch", text: 'watch',id:7 },
     // { url: 'https://rukminim1.flixcart.com/flap/128/128/image/71050627a56b4693.png?q=100', text: 'Travel',id:8 },
     { url: 'https://rukminim1.flixcart.com/flap/128/128/image/dff3f7adcf3a90c6.png?q=100', filter: 'Beauty, Toys & More' ,text: 'toy',id:8 }
